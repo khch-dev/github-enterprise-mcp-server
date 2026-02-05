@@ -36,7 +36,7 @@ Config file location (by OS):
       "command": "npx",
       "args": ["-y", "github-enterprise-mcp-server"],
       "env": {
-        "GITHUB_ENTERPRISE_ENDPOINT": "https://github.nhnent.com/api/v3",
+        "GITHUB_ENTERPRISE_ENDPOINT": "https://your-ghe.example.com/api/v3",
         "GITHUB_ENTERPRISE_TOKEN": "ghp_YOUR_PERSONAL_ACCESS_TOKEN"
       }
     }
@@ -55,7 +55,7 @@ Config file location (by OS):
       "command": "node",
       "args": [
         "/absolute/path/to/github-enterprise-mcp-server/dist/index.js",
-        "--endpoint", "https://github.nhnent.com/api/v3",
+        "--endpoint", "https://your-ghe.example.com/api/v3",
         "--token", "ghp_YOUR_TOKEN"
       ]
     }
@@ -81,7 +81,7 @@ Config file location:
       "command": "npx",
       "args": ["-y", "github-enterprise-mcp-server"],
       "env": {
-        "GITHUB_ENTERPRISE_ENDPOINT": "https://github.nhnent.com/api/v3",
+        "GITHUB_ENTERPRISE_ENDPOINT": "https://your-ghe.example.com/api/v3",
         "GITHUB_ENTERPRISE_TOKEN": "ghp_YOUR_PERSONAL_ACCESS_TOKEN"
       }
     }
@@ -100,7 +100,7 @@ Config file location:
       "command": "node",
       "args": [
         "/path/to/github_ent_mcp_server/mcp-server/dist/index.js",
-        "--endpoint", "https://github.nhnent.com/api/v3",
+        "--endpoint", "https://your-ghe.example.com/api/v3",
         "--token", "ghp_YOUR_TOKEN"
       ]
     }
