@@ -20,8 +20,7 @@ An **MCP (Model Context Protocol) server** for the GitHub Enterprise API. Use it
 └── mcp-server/         # MCP server package
     ├── README.md       # Installation, configuration, tools, publishing
     ├── package.json
-    ├── src/
-    └── dist/           # Build output (git-ignored)
+    └── src/
 ```
 
 For **installation, MCP setup (Claude Desktop / Cursor), available tools, security, and npm publishing**, see **[mcp-server/README.md](./mcp-server/README.md)**.
