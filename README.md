@@ -1,6 +1,6 @@
 # GitHub Enterprise MCP Server
 
-An **MCP (Model Context Protocol) server** for the GitHub Enterprise API. Use it with Claude Desktop, Cursor, or any MCP client to view and manage repositories, issues, PRs, branches, and commits.
+An **MCP (Model Context Protocol) server** for the GitHub Enterprise API. Use it with Claude Desktop, Cursor, or any MCP client to view and manage repositories, issues, PRs, branches, commits, repository contents, and git operations (tags, refs).
 
 ## Features
 

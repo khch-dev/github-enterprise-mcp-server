@@ -100,6 +100,42 @@ This document lists the **tools** provided by the GitHub Enterprise MCP Server a
 
 ---
 
+## 6. Contents (repository files)
+
+| MCP tool | Description | GitHub API (Octokit) | HTTP |
+|----------|-------------|----------------------|------|
+| `github-contents-get` | Get file or directory contents | `repos.getContent({ owner, repo, path, ref? })` | `GET /repos/{owner}/{repo}/contents/{path}` |
+| `github-contents-create-or-update` | Create or update a single file (commit) | `repos.createOrUpdateFileContents({ owner, repo, path, message, content, sha?, branch? })` | `PUT /repos/{owner}/{repo}/contents/{path}` |
+| `github-contents-delete` | Delete a file (commit) | `repos.deleteFile({ owner, repo, path, message, sha, branch? })` | `DELETE /repos/{owner}/{repo}/contents/{path}` |
+
+### Contents parameters summary
+
+- **Common:** `owner`, `repo` (required)
+- **get:** `path` (required), `ref` (branch/tag/SHA, optional, default branch)
+- **create-or-update:** `path`, `message`, `content` (required; UTF-8 text, sent as base64), `sha` (required when updating), `branch` (optional)
+- **delete:** `path`, `message`, `sha` (required), `branch` (optional)
+
+---
+
+## 7. Git (low-level: commit, ref, tag)
+
+| MCP tool | Description | GitHub API (Octokit) | HTTP |
+|----------|-------------|----------------------|------|
+| `github-commit-create` | Create a commit with multiple file changes and update branch | `git.getRef` → `git.getCommit` → `git.createBlob` (per file) → `git.createTree` → `git.createCommit` → `git.updateRef` | `POST /repos/.../git/...` (multiple) |
+| `github-ref-update` | Update a ref (e.g. push branch to a commit SHA) | `git.updateRef({ ref: "heads/...", sha, force? })` | `PATCH /repos/{owner}/{repo}/git/refs/{ref}` |
+| `github-tag-list` | List tags | `repos.listTags({ owner, repo, per_page, page })` | `GET /repos/{owner}/{repo}/tags` |
+| `github-tag-create` | Create an annotated tag | `git.createTag` + `git.createRef("refs/tags/...")` | `POST /repos/.../git/tags`, `POST /repos/.../git/refs` |
+
+### Git parameters summary
+
+- **Common:** `owner`, `repo` (required)
+- **commit-create:** `message`, `branch`, `files[]` (required; each: `path`, `content`, `mode?` 100644|100755|040000)
+- **ref-update:** `ref` (e.g. `main`, `heads/main`, or `refs/heads/main`), `sha` (required), `force` (optional)
+- **tag-list:** `per_page`, `page`
+- **tag-create:** `tag`, `message`, `object` (commit SHA) (required), `type` (commit|tree|blob, optional)
+
+---
+
 ## Reference
 
 - GitHub REST API docs: [REST API - GitHub Docs](https://docs.github.com/en/rest)
