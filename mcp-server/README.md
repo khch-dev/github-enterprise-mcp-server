@@ -173,6 +173,10 @@ Add an entry under `mcpServers` in the same shape:
 - **Pull requests:** `github-pr-get`, `github-pr-list`, `github-pr-create`, `github-pr-merge`, `github-pr-review`
 - **Branches:** `github-branch-list`, `github-branch-get`, `github-branch-create`, `github-branch-delete`
 - **Commits:** `github-commit-get`, `github-commit-list`, `github-commit-compare`
+- **Contents (repository files):** `github-contents-get`, `github-contents-create-or-update`, `github-contents-delete`
+- **Git (low-level):** `github-commit-create`, `github-ref-update`, `github-tag-list`, `github-tag-create`
+
+Full tool list and GitHub API mapping: [docs/tools-and-api.md](../docs/tools-and-api.md).
 
 ## Publishing to npm
 
