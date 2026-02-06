@@ -6,6 +6,8 @@ import { registerIssueTools } from "./tools/issues.js";
 import { registerPullTools } from "./tools/pulls.js";
 import { registerBranchTools } from "./tools/branches.js";
 import { registerCommitTools } from "./tools/commits.js";
+import { registerContentsTools } from "./tools/contents.js";
+import { registerGitTools } from "./tools/git.js";
 
 const SERVER_INSTRUCTIONS = `This MCP server provides access to GitHub Enterprise API.
 
@@ -14,6 +16,8 @@ Available capabilities:
 - Issue tracking (create, update, comment on issues)
 - Pull request workflows (create, review, merge PRs)
 - Branch and commit operations
+- Repository contents (get, create/update, delete files)
+- Git low-level (create commit with multiple files, update ref, list/create tags)
 - GitHub Actions management
 
 Authentication: Requires GitHub Enterprise endpoint URL and Personal Access Token.
@@ -40,7 +44,9 @@ export async function runServer(octokit: Octokit): Promise<void> {
   registerPullTools(server, octokit);
   registerBranchTools(server, octokit);
   registerCommitTools(server, octokit);
-  const toolCount = 5 + 6 + 5 + 4 + 3;
+  registerContentsTools(server, octokit);
+  registerGitTools(server, octokit);
+  const toolCount = 5 + 6 + 5 + 4 + 3 + 3 + 4; // repos, issues, pulls, branches, commits, contents(3), git(4)
   if (isDebug()) process.stderr.write(`Registered ${toolCount} tools.\n`);
 
   let shutdownTimeout: ReturnType<typeof setTimeout> | undefined;
